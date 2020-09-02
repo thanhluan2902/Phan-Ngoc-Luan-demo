@@ -19,6 +19,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../validate/font-awesome-4.7.0/css/font-awesome.min.css">
     <style>
         img {
             width: 45%;
@@ -26,10 +27,24 @@
         th,td {
             text-align: center;
         }
+        .lol {
+            position: absolute;
+            top: 10px;
+            right: 5px;
+        }
     </style>
     </head>
     <body>
         <div class="container">
+            <div class="lol">
+                <?php 
+                    if(isset($_COOKIE['msg'])) {
+                ?>
+                <div class= "alert alert-success">
+                    <strong></strong><?php echo $_COOKIE['msg']; ?>
+                </div>
+		        <?php } ?>
+            </div>
             <h3 class="text-center">--- USERS ---</h3>
             <a href="users_add.php" class="btn btn-primary">Add New User</a>
             <table class="table" width=100%>

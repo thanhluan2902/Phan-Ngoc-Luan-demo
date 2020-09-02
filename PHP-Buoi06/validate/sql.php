@@ -50,7 +50,13 @@
 
         $conn = connect();
         $status = $conn->query($query);
-    
+        if($status) {
+            header("location: $table.php");
+            setcookie('msg',"Thêm mới thành công",time() + 2);
+        } else {
+            header("location: $table.php");
+            setcookie('msg',"Thêm mới không thành công",time() + 2);
+        }
         return $status;
 
     }
@@ -87,6 +93,13 @@
         // die();
     //=============================================================
         $status = $conn->query($query);
+        if($status) {
+            header("location: $table.php");
+            setcookie('msg',"Update thành công",time() + 2);
+        } else {
+            header("location: $table.php");
+            setcookie('msg',"Update không thành công",time() + 2);
+        }
         return $status;
     }
 
@@ -99,109 +112,37 @@
         
         // echo $query;
         // die();
-        $result = $conn->query($query); 
+        $result = $conn->query($query);
+        if($result) {
+            header("location: $table.php");
+            setcookie('msg',"Xóa thành công",time() + 2);
+        } else {
+            header("location: $table.php");
+            setcookie('msg',"Xóa không thành công",time() + 2);
+        }
+        // setcookie('msg',"Xóa thành công",time() + 5);
+
     }
 
 
 //==================================DETAIL=======================================================
-    function detail_category($table,$id_detail) {
+    function detail($table) {
         $conn = connect();
         
-        // $id_detail =$_GET['id'];
+        $id =$_GET['id'];
 
-        $query = "SELECT * FROM $table where id = " . $id_detail;
+        $query = "SELECT * FROM $table where id = " . $id;
 
         // echo $query;
         // die();
         $result = $conn->query($query);
 
-        $data_detail = array();
+        $data = $result->fetch_assoc();
 
-        while($row = $result->fetch_assoc()) {
-            $data_detail[] = $row;
-        }
-        // echo "<pre>";
-        //     print_r($data_detail);
-        // echo "</pre>";
-        //die();
-
-        foreach($data_detail as $value) {
-            echo "<h3>". "Id : " . $value['id'] . "</h3>";
-            echo "<h3>". "Name : " . $value['name'] . "</h3>";
-            echo "<h3>". "Thumbnail : " . $value['thumbnail'] . "</h3>";
-            echo "<h3>". "Slug : " . $value['slug'] . "</h3>";
-            echo "<h3>". "Description : " . $value['description'] . "</h3>";
-            echo "<h3>". "Created_at : " . $value['created_at'] . "</h3>";
-        }
-        
+        return $data;
     }
 
     //=====================================================================================
-    
-    function detail_posts($table,$id_detail) {
-        $conn = connect();
-        
-        // $id_detail =$_GET['id'];
+    // setcookie('msg',"file rỗng",time() + 5);
 
-        $query = "SELECT * FROM $table where id = " . $id_detail;
-
-        // echo $query;
-        // die();
-        $result = $conn->query($query);
-
-        $data_detail = array();
-
-        while($row = $result->fetch_assoc()) {
-            $data_detail[] = $row;
-        }
-        // echo "<pre>";
-        //     print_r($data_detail);
-        // echo "</pre>";
-        //die();
-
-        foreach($data_detail as $value) {
-            echo "<h3>". "Id : " . $value['id'] . "</h3>";
-            echo "<h3>". "Title : " . $value['title'] . "</h3>";
-            echo "<h3>". "Thumbnail : " . $value['thumbnail'] . "</h3>";
-            echo "<h3>". "Content : " . $value['content'] . "</h3>";
-            echo "<h3>". "View_count : " . $value['view_count'] . "</h3>";
-            echo "<h3>". "Category_id : " . $value['category_id'] . "</h3>";
-            echo "<h3>". "Description : " . $value['description'] . "</h3>";
-            echo "<h3>". "Created_at : " . $value['created_at'] . "</h3>";
-        }
-        
-    }
-
-    //=======================================================
-    function detail_users($table,$id_detail) {
-        $conn = connect();
-        
-        // $id_detail =$_GET['id'];
-
-        $query = "SELECT * FROM $table where id = " . $id_detail;
-
-        // echo $query;
-        // die();
-        $result = $conn->query($query);
-
-        $data_detail = array();
-
-        while($row = $result->fetch_assoc()) {
-            $data_detail[] = $row;
-        }
-        // echo "<pre>";
-        //     print_r($data_detail);
-        // echo "</pre>";
-        //die();
-
-        foreach($data_detail as $value) {
-            echo "<h3>". "Id : " . $value['id'] . "</h3>";
-            echo "<h3>". "Name : " . $value['name'] . "</h3>";
-            echo "<h3>". "Email : " . $value['email'] . "</h3>";
-            echo "<h3>". "Password : " . $value['password'] . "</h3>";
-            echo "<h3>". "Slug : " . $value['avatar'] . "</h3>";
-            echo "<h3>". "Created_at : " . $value['created_at'] . "</h3>";
-        }
-        
-    }
 ?>

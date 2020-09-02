@@ -50,7 +50,7 @@
 
             <div class="form-group">
                 <label for="">Created_at</label>
-                <input type="text" class="form-control" id="" placeholder="" name="created_at"
+                <input type="date" class="form-control" id="" placeholder="" name="created_at"
                     value="<?php echo $user['created_at']; ?>">
             </div>
             

@@ -1,15 +1,19 @@
 <?php
-    include '../validate/connect.php';
+    // include '../validate/connect.php';
 
-    $id = $_GET['id'];
-    $conn = connect();
+    // $id = $_GET['id'];
+    // $conn = connect();
 
-    $query = "SELECT * FROM posts where id = " . $id;
+    // $query = "SELECT * FROM posts where id = " . $id;
 
-    $result = $conn->query($query);
+    // $result = $conn->query($query);
 
-    // print_r($result);
-    $post = $result->fetch_assoc();
+    // // print_r($result);
+    // $post = $result->fetch_assoc();
+
+    include '../validate/sql.php';
+
+    $detail = detail('posts');
     
 ?>
 
@@ -44,14 +48,14 @@
     </thead>
     <tbody>
       <tr>
-        <td><?php echo $post['id']  ?></td>
-        <td><?php echo $post['title']  ?></td>
-        <td><?php echo $post['description']  ?></td>
-        <td><?php echo $post['thumbnail']  ?></td>
-        <td><?php echo $post['content']  ?></td>
-        <td><?php echo $post['view_count']  ?></td>
-        <td><?php echo $post['category_id']  ?></td>
-        <td><?php echo $post['created_at']  ?></td>
+        <td><?php echo $detail['id']  ?></td>
+        <td><?php echo $detail['title']  ?></td>
+        <td><?php echo $detail['description']  ?></td>
+        <td><?php echo $detail['thumbnail']  ?></td>
+        <td><?php echo $detail['content']  ?></td>
+        <td><?php echo $detail['view_count']  ?></td>
+        <td><?php echo $detail['category_id']  ?></td>
+        <td><?php echo $detail['created_at']  ?></td>
       </tr>
     </tbody>
   </table>

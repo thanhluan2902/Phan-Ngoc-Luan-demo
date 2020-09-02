@@ -70,7 +70,7 @@
 
             <div class="form-group">
                 <label for="">Created_at</label>
-                <input type="text" class="form-control" name="created_at" value="<?php echo $post['created_at'] ?>">
+                <input type="date" class="form-control" name="created_at" value="<?php echo $post['created_at'] ?>">
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>

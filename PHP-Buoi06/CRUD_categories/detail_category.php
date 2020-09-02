@@ -1,15 +1,19 @@
 <?php
-    include '../validate/connect.php';
+    // include '../validate/connect.php';
 
-    $id = $_GET['id'];
-    $conn = connect();
+    // $id = $_GET['id'];
+    // $conn = connect();
 
-    $query = "SELECT * FROM categories where id = " . $id;
+    // $query = "SELECT * FROM categories where id = " . $id;
 
-    $result = $conn->query($query);
+    // $result = $conn->query($query);
 
-    // print_r($result);
-    $categories = $result->fetch_assoc();
+    // // print_r($result);
+    // $categories = $result->fetch_assoc();
+
+    include '../validate/sql.php';
+
+    $detail = detail('categories');
     
 ?>
 
@@ -42,12 +46,12 @@
     </thead>
     <tbody>
       <tr>
-        <td><?php echo $categories['id']  ?></td>
-        <td><?php echo $categories['name']  ?></td>
-        <td><?php echo $categories['description']  ?></td>
-        <td><?php echo $categories['thumbnail']  ?></td>
-        <td><?php echo $categories['slug']  ?></td>
-        <td><?php echo $categories['created_at']  ?></td>
+        <td><?php echo $detail['id']  ?></td>
+        <td><?php echo $detail['name']  ?></td>
+        <td><?php echo $detail['description']  ?></td>
+        <td><?php echo $detail['thumbnail']  ?></td>
+        <td><?php echo $detail['slug']  ?></td>
+        <td><?php echo $detail['created_at']  ?></td>
       </tr>
     </tbody>
   </table>

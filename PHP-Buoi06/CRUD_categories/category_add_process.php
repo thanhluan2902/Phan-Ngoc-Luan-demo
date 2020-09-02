@@ -21,5 +21,7 @@
     include '../validate/sql.php';
     $data = $_POST;
     $insert = insert('categories', $data);
-    header('location: categories.php');
+    // header('location: categories.php');
+    // setcookie('msg',"Thêm mới thành công",time() + 2);
+
 ?>

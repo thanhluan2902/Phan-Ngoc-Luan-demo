@@ -24,6 +24,7 @@
     $data = $_POST;
     $update = update('categories',$data);
 
-    header('location: categories.php');
-
+    // header('location: categories.php');
+    // setcookie('msg',"Update thành công",time() + 2);
+        
 ?>

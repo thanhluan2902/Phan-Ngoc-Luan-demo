@@ -1,15 +1,19 @@
 <?php
-    include '../validate/connect.php';
+    // include '../validate/connect.php';
 
-    $connect = connect();
+    // $connect = connect();
 
-    $data = $_GET['id'];
+    // $data = $_GET['id'];
 
-    $query = "SELECT * FROM users where id = $data";
+    // $query = "SELECT * FROM users where id = $data";
 
-    $result = $connect->query($query);
+    // $result = $connect->query($query);
     
-    $user = $result->fetch_assoc();
+    // $user = $result->fetch_assoc();
+    include '../validate/sql.php';
+
+    $detail = detail('users');
+   
 ?>
 
 <!DOCTYPE html>
@@ -39,10 +43,10 @@
     </thead>
     <tbody>
       <tr>
-        <td><?php echo $user['id']  ?></td>
-        <td><?php echo $user['name']  ?></td>
-        <td><?php echo $user['email']  ?></td>
-        <td><?php echo $user['created_at']  ?></td>
+        <td><?php echo $detail['id']  ?></td>
+        <td><?php echo $detail['name']  ?></td>
+        <td><?php echo $detail['email']  ?></td>
+        <td><?php echo $detail['created_at']  ?></td>
       </tr>
     </tbody>
   </table>

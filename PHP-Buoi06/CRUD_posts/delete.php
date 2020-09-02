@@ -5,5 +5,6 @@
 
     // echo $delete;
 
-    header('location: posts.php');
+    // header('location: posts.php');
+    // setcookie('msg',"Xóa thành công",time() + 2);
 ?>

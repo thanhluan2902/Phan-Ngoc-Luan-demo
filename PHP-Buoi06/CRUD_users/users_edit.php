@@ -4,5 +4,7 @@
     $data = $_POST;
     $update = update('users', $data);
 
-    header('location: users.php');
+    // header('location: users.php');
+    // setcookie('msg',"Update thành công",time() + 2);
+    
 ?>

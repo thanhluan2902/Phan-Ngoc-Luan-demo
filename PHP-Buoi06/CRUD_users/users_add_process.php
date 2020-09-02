@@ -4,6 +4,8 @@
     $data = $_POST;
     $insert = insert('users' , $data);
 
-    header('location: users.php');
+    // header('location: users.php');
+    // setcookie('msg',"Thêm mới thành công",time() + 2);
+
 
 ?>
