@@ -1,6 +1,6 @@
 <?php
     function connect() {
-            $servername = "localhost";
+        $servername = "localhost";
         $username = "root";
         $password = "";
         $dbname = "db_php_25";

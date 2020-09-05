@@ -17,7 +17,9 @@
     //     setcookie('msg',"Xóa không thành công",time() + 2);
     // }
 
-    include '../validate/sql.php';
+    include_once 'Category.php';
 
-    $delete = delete('categories', $_GET['id']);
+    $delete_category = new Category();
+    $delete = $delete_category->delete_category();
+    
 ?>

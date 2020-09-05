@@ -1,30 +1,15 @@
 <?php
-    // include 'connect.php';
 
+    // include '../validate/sql.php';
     // $data = $_POST;
-    // $id = $data['id'];
-    // $conn = connect();
-    
-    // $query = "UPDATE categories SET name = '".$data['name']."' , description = '".$data['description']."' where id = " . $id;
+    // $update = update('categories',$data);
 
-    // echo $query;
-    // die();
 
-    // $status = $conn->query($query);
+    include_once 'Category.php';
 
-    // // var_dump($status);
+    $update_category = new Category();
 
-    // if($status) {
-    //     header('location: categories.php');
-    // } else {
-    //     echo "update fail!";
-    // }
-
-    include '../validate/sql.php';
-    $data = $_POST;
-    $update = update('categories',$data);
-
-    // header('location: categories.php');
-    // setcookie('msg',"Update thành công",time() + 2);
-        
+    $update = $update_category->edit();
+    header('location: categories.php');
+    setcookie('msg',"Update thành công",time() + 2);
 ?>

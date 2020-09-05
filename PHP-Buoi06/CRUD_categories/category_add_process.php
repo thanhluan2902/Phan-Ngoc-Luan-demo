@@ -1,27 +1,15 @@
 <?php
-
-    // include 'connect.php';
-    // $conn = connect();
+    
+    // include '../validate/sql.php';
     // $data = $_POST;
-
-    // $query = "INSERT INTO categories (name, description) VALUES ('".$data['name']."','".$data['description']."')";
-
-    // // echo $query;
-    // // die();
-
-    // $status = $conn->query($query);
-    
-
-    // if($status) {
-    //     header("location: categories.php");
-    // } else {
-    //     echo "insert fail!";
-    // }
-    
-    include '../validate/sql.php';
-    $data = $_POST;
-    $insert = insert('categories', $data);
+    // $insert = insert('categories', $data);
     // header('location: categories.php');
     // setcookie('msg',"Thêm mới thành công",time() + 2);
+
+
+    include_once 'Category.php';
+    $insert_category = new Category();
+
+    $insert = $insert_category->create();
 
 ?>

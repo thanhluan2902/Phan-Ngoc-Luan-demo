@@ -1,20 +1,26 @@
 <?php
-    require 'connect.php';
-    include 'connection.php';
+    include_once '../validate/connection.php';
+class Model {
+
+    var $connection;
+    function __construct() {
+        $conn = new Connection();
+        
+        $this->connection = $conn->connect();
+    }
 
     function select($table) {
-
         // $conn = connect();
         
-        $conn = new connection();
+        // $conn = new Connection();
         
-        $connection = $conn->connect(); // vì connect() có return tại $conn -> phải tạo biến để gán cho $conn
+        // $connection = $conn->connect(); // vì connect() có return tại $conn -> phải tạo biến để gán cho $conn
         
         $query = "SELECT * FROM $table where 1";
         // echo $query;
         // die();
 
-        $result = $connection->query($query);
+        $result = $this->connection->query($query);
 
         $data = array();
 
@@ -55,8 +61,13 @@
         // echo $query;
         // die();
 
-        $conn = connect();
-        $status = $conn->query($query);
+        // $conn = connect();
+
+        // $conn = new Connection();
+        
+        // $connection = $conn->connect();
+
+        $status = $this->connection->query($query);
         if($status) {
             header("location: $table.php");
             setcookie('msg',"Thêm mới thành công",time() + 2);
@@ -70,7 +81,9 @@
 
     function update($table , $data) {
         $id = $data['id'];
-        $conn = connect();
+        // $conn = connect();
+        // $conn = new connection();
+        // $connection = $conn->connect();
         
     //===================================================
         $string_1 = "";
@@ -98,7 +111,7 @@
         // echo $query;
         // die();
     //=============================================================
-        $status = $conn->query($query);
+        $status = $this->connection->query($query);
         if($status) {
             header("location: $table.php");
             setcookie('msg',"Update thành công",time() + 2);
@@ -111,14 +124,17 @@
 
     function delete($table, $id_delete) {
 
-        $conn = connect();
+        // $conn = connect();
+        // $conn = new connection();
+        // $connection = $conn->connect();
     
         // $id_delete = $_GET['id']; 
         $query = "DELETE FROM $table where id = " . $id_delete;
         
         // echo $query;
         // die();
-        $result = $conn->query($query);
+
+        $result = $this->connection->query($query);
         if($result) {
             header("location: $table.php");
             setcookie('msg',"Xóa thành công",time() + 2);
@@ -127,13 +143,15 @@
             setcookie('msg',"Xóa không thành công",time() + 2);
         }
         // setcookie('msg',"Xóa thành công",time() + 5);
-
+        return $result;
     }
 
 
 //==================================DETAIL=======================================================
     function detail($table) {
-        $conn = connect();
+        // $conn = connect();
+        $conn = new connection();
+        $connection = $conn->connect();
         
         $id =$_GET['id'];
 
@@ -141,14 +159,13 @@
 
         // echo $query;
         // die();
-        $result = $conn->query($query);
+        
+        $result = $this->connection->query($query);
 
         $data = $result->fetch_assoc();
 
         return $data;
     }
-
-    //=====================================================================================
-    // setcookie('msg',"content msg",time() + 5);
+}
 
 ?>

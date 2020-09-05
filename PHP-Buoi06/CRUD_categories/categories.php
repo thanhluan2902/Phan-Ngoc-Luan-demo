@@ -1,20 +1,11 @@
 <?php
-    // include 'connect.php';
-
-    // $conn = connect();
-    // $query = "SELECT * FROM categories where 1";
-    
-    // $result = $conn->query($query);   // query: Thực hiện truy vấn trên CSDL
-
-    // $categories = array();
-
-    // while($row = $result->fetch_assoc()) {   //getch_assoc : Tìm + nạp 1 hàng kết quả dưới dạng 1 mảng kết hợp
-    //     $categories[] = $row;
-    // }
-
     require_once '../validate/sql.php';
+    include 'Category.php';
 
-    $categories = select('categories');
+    $category_fc = new Category();
+    $categories = $category_fc->get_all();
+
+    // $categories = select('categories');
 
     // var_dump($categories);
     // die();

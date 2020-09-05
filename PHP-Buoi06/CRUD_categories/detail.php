@@ -23,10 +23,16 @@
     //     echo $value['description'];
     //     echo $value['created_at'];
     // }
-    echo '<h2> Chi tiết </h4>';
-    include '../validate/sql.php';
-    $id_detail =$_GET['id'];
+    // echo '<h2> Chi tiết </h4>';
+    // include '../validate/sql.php';
+    // $id_detail =$_GET['id'];
 
-    $detail = detail_category('categories',$id_detail);
+    // $detail = detail_category('categories',$id_detail);
     // header('location: categories.php');
+
+    include_once 'Category.php';
+
+    $detail_category = new Category();
+    $detail = $detail_category->detail_category();
+
 ?>
