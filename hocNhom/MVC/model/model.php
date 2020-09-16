@@ -1,7 +1,6 @@
 <?php
     include_once 'connection.php';
 class Model {
-
     protected $connection;
     protected $table;
     function __construct() {
@@ -9,9 +8,10 @@ class Model {
         $this->connection = $conn->connect();
     }
 
-    function select() {
+    public function select() {
         
         $query = "SELECT * FROM $this->table where 1";
+        // echo $query;die();
 
         $result = $this->connection->query($query);
 
@@ -25,11 +25,14 @@ class Model {
     }
 
 
-    function insert($data) {
+    public function insert($data) {
 
         $string_1 = "";
         $string_2 = "";
         $i = 0;
+
+        // ko hiểu!!!!
+        $data = $_POST;
 
         $query = "INSERT INTO $this->table ";
 
@@ -65,20 +68,21 @@ class Model {
     }
 
     //==================================================
-    function show_edit($id) {
+    public function show_edit($id) {
         $query = "SELECT * FROM $this->table where id = " . $id;
-    
+        // echo $query;die();
+
         $result = $this->connection->query($query);
     
         $status = $result->fetch_assoc();
         return $status;
     }
     //==================================================
-    function update($table , $data , $id) {
+    public function update($id, $data ) {
         $string_1 = "";
         $i = 0;
 
-        $query = "UPDATE  $table SET ";
+        $query = "UPDATE  $this->table SET ";
         $query_1 = " where id = $id";
 
         foreach($data as $column => $value){
@@ -123,7 +127,7 @@ class Model {
 
 
 //==================================DETAIL=======================================================
-    function detail($id) {
+public function detail($id) {
         // $conn = connect();
         $conn = new connection();
         $connection = $conn->connect();

@@ -1,11 +1,10 @@
 <?php
-
     define('URL','http://thanhluan.zent/hocNhom/MVC/public/');
 
     $mod = $_GET['mod'];
     $act = isset($_GET['act']) ? $_GET['act']:'index';
     $params = [];
-    $id = isset($_GET['id']) ? [$_GET['id']]:[];
+    $id = isset($_GET['id']) ? $_GET['id']:[];
 
     $params[] = $id;
 
@@ -18,6 +17,6 @@
     $data = $_POST;
     $params[] = $data;
 
-    call_user_func_array([$controller_obj,$act],$params);
+    call_user_func_array([$controller_obj,$act] , $params);
 
 ?>

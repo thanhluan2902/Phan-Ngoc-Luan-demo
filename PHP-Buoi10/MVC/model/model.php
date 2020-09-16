@@ -1,7 +1,6 @@
 <?php
     include_once 'connection.php';
 class Model {
-
     var $connection;
     var $table;
     function __construct() {
@@ -9,9 +8,9 @@ class Model {
         $this->connection = $conn->connect();
     }
 
-    function select() {
+    function select($table) {
         
-        $query = "SELECT * FROM $this->table where 1";
+        $query = "SELECT * FROM $table where 1";
 
         $result = $this->connection->query($query);
 
@@ -25,13 +24,13 @@ class Model {
     }
 
 
-    function insert($data) {
+    function insert($table,$data) {
 
         $string_1 = "";
         $string_2 = "";
         $i = 0;
 
-        $query = "INSERT INTO $this->table ";
+        $query = "INSERT INTO $table ";
 
         foreach($data as $column => $value){
             $string_1 .= $column;
@@ -125,8 +124,8 @@ class Model {
 //==================================DETAIL=======================================================
     function detail($table,$id) {
         // $conn = connect();
-        $conn = new connection();
-        $connection = $conn->connect();
+        // $conn = new connection();
+        // $connection = $conn->connect();
         
         // $id =$_GET['id'];
 
@@ -140,6 +139,15 @@ class Model {
         $data = $result->fetch_assoc();
 
         return $data;
+    }
+
+    
+    public function getUserByName($table , $name) {
+        $query = "SELECT * FROM $table where name=" . "'" .  $name . "'";
+
+        $result = $this->connection->query($query);
+        $user = $result->fetch_assoc();
+        return $user;
     }
 }
 

@@ -24,6 +24,10 @@ class User extends Model {
     public function update_table($id,$data) {
         return $this->update($this->table, $data , $id);
     }
+
+    public function getByName($name) {
+        return $this->getUserByName($this->table , $name);
+    }
 }
 
 ?>

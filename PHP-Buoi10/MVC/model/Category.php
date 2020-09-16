@@ -2,10 +2,7 @@
 require_once 'model/model.php';
 class Category extends Model {
     var $table = 'categories';
-    // public function __construct() {
-    //     $this->table = 'categories';
-    //     parent:: __construct();
-    // }
+
     public function get_all() {
         return $this->select($this->table);
     }

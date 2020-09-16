@@ -58,8 +58,8 @@ class Model {
 
         $query .= $string;
         //test
-        // echo $query;
-        // die();
+        echo $query;
+        die();
 
         // $conn = connect();
 
