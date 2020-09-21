@@ -8,9 +8,9 @@ class Model {
         $this->connection = $conn->connect();
     }
 
-    function select($table) {
+    function select() {
         
-        $query = "SELECT * FROM $table where 1";
+        $query = "SELECT * FROM " . $this->table;
 
         $result = $this->connection->query($query);
 
@@ -23,14 +23,15 @@ class Model {
         return $data;
     }
 
-
-    function insert($table,$data) {
+    
+    function insert($data) {
 
         $string_1 = "";
         $string_2 = "";
         $i = 0;
 
-        $query = "INSERT INTO $table ";
+
+        $query = "INSERT INTO $this->table ";
 
         foreach($data as $column => $value){
             $string_1 .= $column;
@@ -49,9 +50,7 @@ class Model {
         $string = '(' . $string_1 .')' . ' VALUES ' . '(' . $string_2 .')';
 
         $query .= $string;
-
-        // echo $query;
-        // die();
+        // echo $query;die();
 
         $status = $this->connection->query($query);
         if($status) {
@@ -64,30 +63,35 @@ class Model {
     }
 
     //==================================================
-    function show_edit($table , $id) {
-        $query = "SELECT * FROM $table where id = " . $id;
-    
+    function show_edit($id) {
+        $query = "SELECT * FROM $this->table where id = " . $id;
+
+        // echo $query;die();
+
         $result = $this->connection->query($query);
     
         $status = $result->fetch_assoc();
         return $status;
     }
     //==================================================
-    function update($table , $data , $id) {
+
+
+
+    function update($id , $data) {
         $string_1 = "";
         $i = 0;
 
-        $query = "UPDATE  $table SET ";
-        $query_1 = " where id = $id";
+        $query = "UPDATE  $this->table SET ";
+        $query_1 = " where id = " . $id;
 
-        foreach($data as $column => $value){
+        foreach($data['data'] as $column => $value){
             $string_1 .= $column . " = " ."'". $value ."'";
             $i++;
 
             if($i == 0) {
                 $value = $id;
             }
-            if($i != count($data)) {
+            if($i != count($data['data'])) {
                 $string_1 .= " , ";
             } 
         }
@@ -107,9 +111,9 @@ class Model {
         return $status;
     }
 
-    public function delete($table, $id) {
+    public function delete($id) {
 
-        $query = "DELETE FROM $table where id = " . $id;
+        $query = "DELETE FROM $this->table where id = " . $id;
         
         $result = $this->connection->query($query);
         if($result) {
@@ -122,14 +126,8 @@ class Model {
 
 
 //==================================DETAIL=======================================================
-    function detail($table,$id) {
-        // $conn = connect();
-        // $conn = new connection();
-        // $connection = $conn->connect();
-        
-        // $id =$_GET['id'];
-
-        $query = "SELECT * FROM $table where id = " . $id;
+    function detail($id) {
+        $query = "SELECT * FROM " . $this->table . " where id = " . $id;
 
         // echo $query;
         // die();
@@ -142,12 +140,67 @@ class Model {
     }
 
     
-    public function getUserByName($table , $name) {
-        $query = "SELECT * FROM $table where name=" . "'" .  $name . "'";
-
+    public function getUserByName($email) {
+        $query = "SELECT * FROM users where email=" . "'" .  $email . "'";
+        
         $result = $this->connection->query($query);
         $user = $result->fetch_assoc();
         return $user;
+    }
+
+    /*
+    *Hàm tìm kiếm có điều kiện đưa ra 1 bản ghi
+    *@params array $data
+    */
+    function first($data) {
+        $string_1 = "";
+        $i = 0;
+        // $data = $_POST;
+        $query = "SELECT * FROM  $this->table WHERE ";
+        foreach($data as $column => $value){
+            $string_1 .= $column . " = " ."'". $value ."'";
+            $i++;
+
+            if($i != count($data)) {
+                $string_1 .= " AND ";
+            } 
+        }
+
+        $query = $query . $string_1;
+
+        $result = $this->connection->query($query);
+        return $result->fetch_assoc();
+    }
+
+    /*
+    *Hàm tìm kiếm có điều kiện
+    *@params array $data
+    *@return array
+    */
+    public function findWhere($data)
+    {
+        $string_1 = "";
+        $i = 0;
+        $query = "SELECT * FROM  $this->table WHERE ";
+        foreach($data['data'] as $column => $value){
+            $string_1 .= $column . " = " ."'". $value ."'";
+            $i++;
+
+            if($i != count($data['data'])) {
+                $string_1 .= " AND ";
+            }
+        }
+
+        $query = $query . $string_1;
+        // echo $query;die();
+        $result = $this->connection->query($query);
+        $data['data'] = array();
+
+        while($row = $result->fetch_assoc()){
+            $data[] = $row;
+        }
+
+        return $data;
     }
 }
 

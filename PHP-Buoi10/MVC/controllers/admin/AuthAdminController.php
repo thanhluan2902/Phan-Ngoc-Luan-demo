@@ -1,6 +1,6 @@
 <?php
-require_once 'controllers/BaseController.php';
-require_once 'model/user.php';
+require_once 'controllers/Controller.php';
+require_once 'model/User.php';
 class AuthAdminController extends Controller {
     public function login() {
     // giao diện
@@ -12,16 +12,17 @@ class AuthAdminController extends Controller {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
+        // echo $password;die();
         $userModel = new User();
-        $user = $userModel->getByName($username);
+        $user = $userModel->getUserByName($username);
 
         // var_dump($user);die();
 
         if($user) {
             if($user['password'] == $password) {
                 $_SESSION['login'] = true;
-                echo "Đăng nhập thành công";
-                header('location: index.php?mod=admin&c=category&act=index');
+                $_SESSION['auth'] = $user;
+                header('location: index.php?mod=admin&c=user&act=index');
             } else {
                 $_SESSION['login'] = false;
                 echo "Sai mật khẩu";
@@ -32,7 +33,12 @@ class AuthAdminController extends Controller {
         }
     }
 
-
+    public function logout() {
+        if($_SESSION['login'] == true) {
+            unset($_SESSION['login']);
+            header('location: index.php?mod=admin&c=auth&act=login');
+        }      
+    }
 }
 
 ?>

@@ -10,7 +10,7 @@
             $this->servername = 'localhost';
             $this->username = 'root';
             $this->password = '';
-            $this->dbname = 'db_php_25';
+            $this->dbname = 'db_project';
         }
 
         function connect() {
