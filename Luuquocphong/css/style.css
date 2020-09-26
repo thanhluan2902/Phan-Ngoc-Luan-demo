@@ -1,0 +1,145 @@
+header{
+    background-color:lightgrey;
+    padding:1.5em;
+    text-align:center;
+    height: 500px;
+    font-family: "Times New Roman", Times, serif;
+}
+header img{
+	width: 550px;
+	height: 200px;
+    opacity: 0.3;
+}
+nav{
+
+    background-color:#220800;
+}
+
+nav ul{
+    margin:0;
+    padding:0;
+    list-style-type:none;
+}
+
+nav li{
+    display:inline-block;
+}
+
+nav li a{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    padding:14px 16px;
+}
+nav li:hover{
+    background-color:orange;
+}
+
+nav{
+    background-color:#111100;
+}
+
+nav ul{
+    margin:0;
+    padding:0;
+    list-style-type:none;
+}
+
+nav li{
+    display:inline-block;
+}
+
+nav li a{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    padding:14px 16px;
+}
+nav li:hover{
+    background-color:orange;
+}
+*{
+    box-sizing:border-box;
+}
+
+section{
+
+    background-color:lightgrey;
+
+}
+
+article{
+    width:33.33%;
+    height: 700px;
+    float:left;
+    background-color:#120800;
+    padding:1em;
+    border-right: 1px solid #000;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+section:after{
+    content:"";
+    clear:both;
+    display:table;
+}
+nav li:hover{
+    background-color:orange;
+}
+*{
+    box-sizing:border-box;
+}
+
+section{
+    background-color:lightgrey;
+
+}
+
+article{
+    width:33.33%;
+    float:left;
+    background-color:#f0f0f0;
+    padding:1em;
+}
+section:after{
+    content:"";
+    clear:both;
+
+}
+footer{
+    background-color:black;
+    padding:0.8em;
+    color:white;
+    text-align:center;
+}
+
+article img {
+	width: 290px;
+	height: auto;
+}
+
+nav img {
+    padding: 20px 20px 20px 30px;
+}
+
+.main-header .inner {
+    width: auto;
+    margin-top: auto;
+    padding-top: 10%;
+}
+.main-header-content.inner h1,.main-header-content.inner .post-meta,.main-header-content.inner .post-meta a {
+    color:#000;
+}
+
+.infor{
+    margin-top: 15px;
+    margin-left: 0px;
+    width: 100%;
+
+}
+
+.inform{
+    padding: 10px;
+    font-style: 20px;
+    font-weight: 10px;
+}
